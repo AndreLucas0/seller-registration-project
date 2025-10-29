@@ -1,5 +1,7 @@
 package com.andre.bootcampdevjr_cadastro_vendedores.model;
 
+import com.andre.bootcampdevjr_cadastro_vendedores.dto.SellerResponse;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -70,6 +72,17 @@ public class Seller {
 
     public void setGender(Integer gender) {
         this.gender = gender;
+    }
+
+    public SellerResponse toDTO() {
+        SellerResponse sellerResponse = new SellerResponse();
+        sellerResponse.setId(id);
+        sellerResponse.setName(name);
+        sellerResponse.setGender(gender);
+        sellerResponse.setSalary(salary);
+        sellerResponse.setBonus(bonus);
+
+        return sellerResponse;
     }
 
 }

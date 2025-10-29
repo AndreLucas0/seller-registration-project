@@ -1,8 +1,13 @@
 package com.andre.bootcampdevjr_cadastro_vendedores.service;
 
+import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.andre.bootcampdevjr_cadastro_vendedores.dto.SellerResponse;
 import com.andre.bootcampdevjr_cadastro_vendedores.model.Seller;
 import com.andre.bootcampdevjr_cadastro_vendedores.repository.SellerRepository;
 
@@ -18,7 +23,14 @@ public class SellerService {
         Seller seller = sellerRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Seller not found."));
 
-        
+        return seller.toDTO();
+    }
+
+    public List<SellerResponse> getAll() {
+        return sellerRepository.findAll()
+                               .stream()
+                               .map(s -> s.toDTO())
+                               .collect(Collectors.toList()); 
     }
 
 }
