@@ -8,6 +8,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "TBL_SELLER")
@@ -16,11 +18,12 @@ public class Seller {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @NotBlank(message = "Name can not be blank.")
     @Column(nullable = false, length = 255)
     private String name;
     private Double salary;
     private Double bonus;
+    @Size(min = 1, max = 2, message = "Invalid gender.")
     private Integer gender;
 
     public Seller(Long id, String name, Double salary, Double bonus, Integer gender) {
