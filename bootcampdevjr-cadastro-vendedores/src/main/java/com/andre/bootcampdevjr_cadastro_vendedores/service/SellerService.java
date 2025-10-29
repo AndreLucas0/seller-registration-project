@@ -47,7 +47,13 @@ public class SellerService {
     }
 
     public void update(long id, SellerRequest sellerRequest) {
-        
+
+        Seller seller = sellerRepository.getReferenceById(id);
+
+        seller.setName(sellerRequest.getName());
+        seller.setGender(sellerRequest.getGender());
+        seller.setSalary(sellerRequest.getSalary());
+        seller.setBonus(sellerRequest.getBonus());
     }
 
 }
