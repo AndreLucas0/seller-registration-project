@@ -38,4 +38,16 @@ public class SellerService {
         return seller.toDTO();
     }
 
+    public void deleteById(long id) {
+        if (!sellerRepository.existsById(id)) {
+            throw new EntityNotFoundException("Seller not found.");
+        }
+
+        sellerRepository.deleteById(id);
+    }
+
+    public void update(long id, SellerRequest sellerRequest) {
+        
+    }
+
 }
